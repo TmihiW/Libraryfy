@@ -1,5 +1,5 @@
 class viewPdf{    
-    url='assets/pdfFile/BookLaravel.pdf';
+    url='assets/pdfFile/Information_Security.pdf';
     static pdfDoc=null;
     static pageNum=1;
     static numPages=0;

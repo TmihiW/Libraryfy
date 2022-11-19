@@ -11,7 +11,7 @@
         }
     </style>
 </head>
-<body>
+<body>    
             <button onclick="viewPdf.prevPage()">Prev</button>
             <button onclick="viewPdf.nextPage()">Next</button>
             <div >
