@@ -1,5 +1,6 @@
 class viewPdf{    
     url='assets/pdfFile/Information_Security.pdf';
+    //change the url of pdf file
     static pdfDoc=null;
     static pageNum=1;
     static numPages=0;
@@ -58,3 +59,14 @@ class viewPdf{
     }      
 
 }
+
+/* later...
+//on button click
+function newUrl(){
+    var newPdf =document.getElementById('pdfName').value;
+    //changing url of pdf file
+    viewPdf.url='assets/pdfFile/'+newPdf;
+    viewPdf.pageNum = 1;
+    viewPdf.reRenderCanvas();
+}
+*/

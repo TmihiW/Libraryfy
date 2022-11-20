@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //return view('pdfViewer');
-    return view('welcome');
+    return view('pdfViewer');
+    //return view('welcome');
 });
 
 
