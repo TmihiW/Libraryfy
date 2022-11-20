@@ -1,6 +1,5 @@
 class viewPdf{    
     url='assets/pdfFile/Information_Security.pdf';
-    //change the url of pdf file
     static pdfDoc=null;
     static pageNum=1;
     static numPages=0;
@@ -60,8 +59,7 @@ class viewPdf{
 
 }
 
-/* later...
-//on button click
+/* // later...change the url of pdf file on button click
 function newUrl(){
     var newPdf =document.getElementById('pdfName').value;
     //changing url of pdf file
