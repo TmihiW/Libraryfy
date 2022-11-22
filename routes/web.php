@@ -28,5 +28,10 @@ Route::get('/hello', function () {
 
 // ->where('id', '[0-9]+') is a regular expression
 Route::get('/posts/{id}', function ($id) {
+    //dump and die function
+    //output: "1" // routes\web.php:32
+    //dd($id);
+    //dump die and debug function
+    ddd($id);
     return response('This is post number ' . $id);
 })->where('id', '[0-9]+');
