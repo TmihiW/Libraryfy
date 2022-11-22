@@ -14,20 +14,7 @@ use App\Models\Listing;
 |
 */
 
-// any http request can be used here Route::
-Route::get('/', function () {
-    //return view('pdfViewer');
-    //return view('welcome');
 
-    //pass data to view
-    return view('listings',[
-        'heading'=>'Latest Listings',
-        'listings'=> Listing::all() //double column :: is used to call static methods
-        //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
-        //to create an eloquent model run this comand in terminal:
-        //php artisan make:model Listing
-    ]);
-});
 
 // in http://127.0.0.1:8000/hello
 Route::get('/hello', function () {
@@ -53,4 +40,29 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/search', function (Request $request) {
     //dd($request);
     return $request->name.' '.$request->city;
+});
+
+
+// any http request can be used here Route::
+Route::get('/', function () {
+    //return view('pdfViewer');
+    //return view('welcome');
+
+    //pass data to view
+    return view('listings',[
+        'heading'=>'Latest Listings',
+        'listings'=> Listing::all() //double column :: is used to call static methods
+        //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
+        //to create an eloquent model run this comand in terminal:
+        //php artisan make:model Listing
+    ]);
+});
+
+
+// in http://127.0.0.1:8000/listings/1
+//single listing
+Route::get('/listings/{id}', function ($id) {
+    return view('listing',[
+        'listing'=> Listing::find($id)
+    ]);
 });
