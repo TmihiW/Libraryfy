@@ -21,5 +21,7 @@ Route::get('/', function () {
 
 // in http://127.0.0.1:8000/hello
 Route::get('/hello', function () {
-    return 'Hello World';
+    return response('<h1>Hello World</h1>', 200)
+        ->header('Content-Type', 'text/plain')
+        ->header('foo', 'bar');
 });
