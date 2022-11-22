@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// any http request can be used here Route::
 Route::get('/', function () {
     //return view('pdfViewer');
     return view('welcome');
 });
 
-
-echo "Welcome to Libraryfy";
-
+// in http://127.0.0.1:8000/hello
+Route::get('/hello', function () {
+    return 'Hello World';
+});
