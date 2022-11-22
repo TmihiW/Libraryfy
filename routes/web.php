@@ -25,3 +25,8 @@ Route::get('/hello', function () {
         ->header('Content-Type', 'text/plain')
         ->header('foo', 'bar');
 });
+
+// ->where('id', '[0-9]+') is a regular expression
+Route::get('/posts/{id}', function ($id) {
+    return response('This is post number ' . $id);
+})->where('id', '[0-9]+');
