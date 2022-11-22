@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Listing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,18 +22,10 @@ Route::get('/', function () {
     //pass data to view
     return view('listings',[
         'heading'=>'Latest Listings',
-        'listings'=>[
-            [
-            'id'=>1,
-            'title'=>'Listing One',
-            'description'=>'This is my first listing'
-            ],
-            [
-            'id'=>2,
-            'title'=>'Listing Two',
-            'description'=>'This is my second listing'
-            ]
-        ]
+        'listings'=> Listing::all() //double column :: is used to call static methods
+        //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
+        //to create an eloquent model run this comand in terminal:
+        //php artisan make:model Listing
     ]);
 });
 
