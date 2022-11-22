@@ -1,6 +1,6 @@
 <h2>
-    {{$listing['title']}}
+    {{$listingParam1['title']}}
 </h2>
 <p>
-    {{$listing['description']}}
+    {{$listingParam1['description']}}
 </p>    
