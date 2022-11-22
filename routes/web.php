@@ -39,6 +39,7 @@ Route::get('/posts/{id}', function ($id) {
 
 
 // access values directly
+//in http://127.0.0.1:8000/search?name=Kadir&city=Kayseri
 Route::get('/search', function (Request $request) {
     //dd($request);
     return $request->name.' '.$request->city;
