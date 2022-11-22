@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,15 @@ Route::get('/hello', function () {
 Route::get('/posts/{id}', function ($id) {
     //dump and die function
     //output: "1" // routes\web.php:32
-    //dd($id);
+    dd($id);
     //dump die and debug function
-    ddd($id);
+    //ddd($id);
     return response('This is post number ' . $id);
 })->where('id', '[0-9]+');
+
+
+// access values directly
+Route::get('/search', function (Request $request) {
+    //dd($request);
+    return $request->name.' '.$request->city;
+});
