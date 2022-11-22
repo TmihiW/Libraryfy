@@ -17,4 +17,14 @@ class Listing{
             ]
         ];
     }
+    //find by id
+    public static function find($id){
+        //use self when you have a class and you want to call a static method or property in a static function
+        $listings=self::all();
+        foreach($listings as $listing){
+            if($listing['id']==$id){
+                return $listing;
+            }
+        }
+    }
 }
