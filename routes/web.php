@@ -17,7 +17,24 @@ use Illuminate\Support\Facades\Route;
 // any http request can be used here Route::
 Route::get('/', function () {
     //return view('pdfViewer');
-    return view('welcome');
+    //return view('welcome');
+
+    //pass data to view
+    return view('listings',[
+        'heading'=>'Latest Listings',
+        'listings'=>[
+            [
+            'id'=>1,
+            'title'=>'Listing One',
+            'description'=>'This is my first listing'
+            ],
+            [
+            'id'=>2,
+            'title'=>'Listing Two',
+            'description'=>'This is my second listing'
+            ]
+        ]
+    ]);
 });
 
 // in http://127.0.0.1:8000/hello
@@ -27,6 +44,7 @@ Route::get('/hello', function () {
         ->header('foo', 'bar');
 });
 
+// in http://127.0.0.1:8000/posts/1
 // ->where('id', '[0-9]+') is a regular expression
 Route::get('/posts/{id}', function ($id) {
     //dump and die function
