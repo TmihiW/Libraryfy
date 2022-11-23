@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -43,34 +44,37 @@ Route::get('/search', function (Request $request) {
 });
 
 
-// any http request can be used here Route::
-Route::get('/', function () {
-    //return view('pdfViewer');
-    //return view('welcome');
+// // any http request can be used here Route::
+// Route::get('/', function () {
+//     //return view('pdfViewer');
+//     //return view('welcome');
 
-    //pass data to view
-    return view('listings',[
-        'heading'=>'Latest Listings',
-        'listingsValues'=> Listing::all() //double column :: is used to call static methods
-        //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
-        //to create an eloquent model run this comand in terminal:
-        //php artisan make:model Listing
-    ]);
-});
+//     //pass data to view
+//     return view('listings',[
+//         'listingsValues'=> Listing::all() //double column :: is used to call static methods
+//         //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
+//         //to create an eloquent model run this comand in terminal:
+//         //php artisan make:model Listing
+//     ]);
+// });
 
 
-// in http://127.0.0.1:8000/listings/1
-//single listing
-Route::get('/listings/{id}', function ($id) {
-    $listing = Listing::find($id);
-    if ($listing){
-        return view('listing',[
-            'listingValue'=> Listing::find($id)
-        ]);
-    }
-    else{
-        abort('404');
-        //return redirect('/');
-    }
+// // in http://127.0.0.1:8000/listings/1
+// //single listing
+// Route::get('/listings/{id}', function ($id) {
+//     $listing = Listing::find($id);
+//     if ($listing){
+//         return view('listing',[
+//             'listingValue'=> Listing::find($id)
+//         ]);
+//     }
+//     else{
+//         abort('404');
+//         //return redirect('/');
+//     }
 
-});
+// });
+
+Route::get('/', [ListingController::class, 'index']);
+
+Route::get('/listings/{id}', [ListingController::class, 'show']);
