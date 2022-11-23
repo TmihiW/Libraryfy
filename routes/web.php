@@ -78,3 +78,12 @@ Route::get('/search', function (Request $request) {
 Route::get('/', [ListingController::class, 'index']);
 
 Route::get('/listings/{id}', [ListingController::class, 'show']);
+
+//Common Resource Routes:
+//index - Show all listings
+//show - Show a single listing
+//create - Show form to create new listing
+//store - Save new listing
+//edit - Show form to edit listing
+//update - Update listing
+//destroy - Delete listing
