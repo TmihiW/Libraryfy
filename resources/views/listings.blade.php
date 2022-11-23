@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._hero')
 <!-- syntax without php in blade template -->
 <!-- similar to jsx (react), angular -->
 {{--<h1>{{$heading}}</h1>--}}
