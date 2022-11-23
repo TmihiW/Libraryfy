@@ -2,6 +2,7 @@
 
 @section('content')
 @include('partials._hero')
+@include('partials._search')
 <!-- syntax without php in blade template -->
 <!-- similar to jsx (react), angular -->
 {{--<h1>{{$heading}}</h1>--}}
@@ -19,7 +20,7 @@
             />
             <div>
                 <h3 class="text-2xl">
-                    <a href="show.html">{{$listing->title}}</a>
+                    <a href="/listings/{{$listing->id}}">{{$listing->title}}</a>
                 </h3>
                 <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
                 <ul class="flex">
