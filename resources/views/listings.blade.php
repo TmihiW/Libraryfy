@@ -2,8 +2,8 @@
 <!-- similar to jsx (react), angular -->
 <h1>{{$heading}}</h1>
 
-@unless(count($listingsParamList1)==0)
-    @foreach($listingsParamList1 as $listing) 
+@unless(count($listingsValues)==0)
+    @foreach($listingsValues as $listing) 
         <h2>
             <!--{{$listing['title']}}-->
             <a href="/listings/{{$listing['id']}}">{{$listing['title']}}</a>
@@ -11,6 +11,7 @@
         <p>
             {{$listing['description']}}
         </p>    
-@endforeach
+    @endforeach
 @else
+<p>No listings found</p>
 @endunless
