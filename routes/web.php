@@ -51,7 +51,7 @@ Route::get('/', function () {
     //pass data to view
     return view('listings',[
         'heading'=>'Latest Listings',
-        'listingsParamList1'=> Listing::all() //double column :: is used to call static methods
+        'listingsValues'=> Listing::all() //double column :: is used to call static methods
         //data come throught a model, in laravel we called eloquent model wich is ORM (Object Relational Mapper)
         //to create an eloquent model run this comand in terminal:
         //php artisan make:model Listing
@@ -63,6 +63,6 @@ Route::get('/', function () {
 //single listing
 Route::get('/listings/{id}', function ($id) {
     return view('listing',[
-        'listingParam1'=> Listing::find($id)
+        'listingValue'=> Listing::find($id)
     ]);
 });

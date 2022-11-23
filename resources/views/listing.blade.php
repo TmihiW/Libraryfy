@@ -1,6 +1,11 @@
-<h2>
-    {{$listingParam1['title']}}
-</h2>
-<p>
-    {{$listingParam1['description']}}
-</p>    
+
+@unless(!($listingValue))
+    <h2>
+        {{$listingValue['title']}}
+    </h2>
+    <p>
+        {{$listingValue['description']}}
+    </p>
+@else
+<p>No listing found</p>
+@endunless    
