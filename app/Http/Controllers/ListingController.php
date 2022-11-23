@@ -9,7 +9,7 @@ class ListingController extends Controller
 {
     //Show all listings
     public function index(){
-        return view('listings',[
+        return view('listings.index',[
             'listingsValues'=> Listing::all() 
         ]);
     }
@@ -17,7 +17,7 @@ class ListingController extends Controller
     public function show($id){
             $listing = Listing::find($id);
         if ($listing){
-            return view('listing',[
+            return view('listings.show',[
                 'listingValue'=> Listing::find($id)
             ]);
         }
