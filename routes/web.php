@@ -74,11 +74,6 @@ Route::get('/search', function (Request $request) {
 //     }
 
 // });
-
-Route::get('/', [ListingController::class, 'index']);
-
-Route::get('/listings/{id}', [ListingController::class, 'show']);
-
 //Common Resource Routes:
 //index - Show all listings
 //show - Show a single listing
@@ -87,3 +82,8 @@ Route::get('/listings/{id}', [ListingController::class, 'show']);
 //edit - Show form to edit listing
 //update - Update listing
 //destroy - Delete listing
+
+Route::get('/', [ListingController::class, 'index']);
+
+Route::get('/listings/{id}', [ListingController::class, 'show']);
+
