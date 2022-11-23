@@ -12,9 +12,13 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run() 
     {
-        // \App\Models\User::factory(10)->create();
+        // runs  php artisan db:Seed
+        // comes from database\factories\UserFactory.php or
+        // comes from  Database\Seeders\UserSeeder.php
+        // uncolumn this  create 10 dummy users
+        //\App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
