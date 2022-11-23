@@ -61,16 +61,9 @@ Route::get('/', function () {
 
 // in http://127.0.0.1:8000/listings/1
 //single listing
-Route::get('/listings/{id}', function ($id) {
-    $listing = Listing::find($id);
-    if ($listing){
-        return view('listing',[
-            'listingValue'=> Listing::find($id)
-        ]);
-    }
-    else{
-        abort('404');
-        //return redirect('/');
-    }
+Route::get('/listings/{listingValue}', function (Listing $listing) {
+    return view('listing',[
+        'listingValue'=> $listing
+    ]);
     
 });
