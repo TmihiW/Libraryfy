@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._hero')
 <!-- syntax without php in blade template -->
 <!-- similar to jsx (react), angular -->
 {{--<h1>{{$heading}}</h1>--}}
@@ -13,7 +14,7 @@
         <div class="flex">
             <img
                 class="hidden w-48 mr-6 md:block"
-                src="images/no-image.png"
+                src="{{asset('images/no-image.png')}}"
                 alt=""
             />
             <div>
