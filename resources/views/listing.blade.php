@@ -1,4 +1,6 @@
+@extends('layout')
 
+@section('content')
 @unless(!($listingValue))
     <h2>
         {{$listingValue['title']}}
@@ -9,3 +11,4 @@
 @else
 <p>No listing found</p>
 @endunless    
+@endsection

@@ -1,3 +1,6 @@
+@extends('layout')
+
+@section('content')
 <!-- syntax without php in blade template -->
 <!-- similar to jsx (react), angular -->
 <h1>{{$heading}}</h1>
@@ -15,3 +18,4 @@
 @else
 <p>No listings found</p>
 @endunless
+@endsection
