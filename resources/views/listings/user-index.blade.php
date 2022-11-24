@@ -13,7 +13,7 @@
             @php 
             //dd(var_dump($listingsValues));
             //sorting users by times rented
-            $listingsValues = $listingsValues->sortByDesc('times_rented',);                           
+            $listingsValues = $listingsValues->sortByDesc('times_rented');                           
             @endphp
             @foreach($listingsValues as $listing) 
                 <x-user-listing-card :listing="$listing" />
