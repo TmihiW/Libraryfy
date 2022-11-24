@@ -1,4 +1,4 @@
-<x-layout>
+<x-user-layout>
     @include('partials._hero')
     @include('partials._search')
     
@@ -22,4 +22,4 @@
             <p>No listings found</p>
         @endunless
     </div>
-    </x-layout>
+    </x-user-layout>
