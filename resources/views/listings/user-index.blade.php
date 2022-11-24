@@ -22,4 +22,4 @@
             <p>No listings found</p>
         @endunless
     </div>
-    </x-user-layout>
+</x-user-layout>
