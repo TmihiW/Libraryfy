@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -83,7 +84,7 @@ Route::get('/search', function (Request $request) {
 //update - Update listing
 //destroy - Delete listing
 
-Route::get('/', [ListingController::class, 'index']);
+Route::get('/', [UsersController::class, 'index']);
 
 Route::get('/listings/{id}', [ListingController::class, 'show']);
 

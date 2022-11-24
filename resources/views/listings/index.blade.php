@@ -10,7 +10,7 @@
 
     @unless(count($listingsValues)==0)
         @foreach($listingsValues as $listing) 
-            <x-listing-card :listing="$listing" />
+            <x-user-listing-card :listing="$listing" />
         @endforeach
     @else
         <p>No listings found</p>
