@@ -1,6 +1,6 @@
 <x-user-layout>
-    @include('partials._hero')
-    @include('partials._search')
+    @include('partials.user_hero')
+    @include('partials.user_search')
     
     <!-- syntax without php in blade template -->
     <!-- similar to jsx (react), angular -->

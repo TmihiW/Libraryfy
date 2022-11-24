@@ -1,5 +1,5 @@
 <x-user-layout>
-    @include('partials._search')
+    @include('partials.user_search')
     
     @unless(!($listingValue))
     <a href="/" class="inline-block text-black ml-4 mb-4"
