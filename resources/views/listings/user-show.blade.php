@@ -1,4 +1,4 @@
-<x-layout>
+<x-user-layout>
     @include('partials._search')
     
     @unless(!($listingValue))
@@ -56,4 +56,4 @@
     @else
         <p>No listing found</p>
     @endunless    
-</x-layout>
+</x-user-layout>
