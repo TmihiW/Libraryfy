@@ -11,6 +11,9 @@ class Listing extends Model
     use HasFactory;
     
     public function scopeFilter($query,array $filters){
-        dd($filters['tag']);
+        if($filters['tag'] ?? false){
+        $query->where('tag','like','%'.request('tag').'%');
+        //attention here | 'tag' named 'tags' in db        
+        }        
     }
 }
