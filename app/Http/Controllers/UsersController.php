@@ -10,7 +10,7 @@ class UsersController extends Controller
     //Show all listings
     public function index(){
         return view('listings.user-index',[
-            'listingsValues'=> Users::all() 
+            'listingsValues'=> Users::latest()->filter(request(['tag','search']))->get()
         ]);
     }
     //Show a single listing
