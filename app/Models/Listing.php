@@ -14,6 +14,17 @@ class Listing extends Model
         if($filters['tag'] ?? false){
         $query->where('tags','like','%'.request('tag').'%');
         //attention here | 'tag' named 'tags' in db        
-        }        
+        }
+        if($filters['search'] ?? false){
+            $query->when($filters['search'],function($query,$search){
+                $query->where('title','like','%'.$search.'%')
+                ->orWhere('description','like','%'.$search.'%')
+                ->orWhere('tags','like','%'.$search.'%')
+                ->orWhere('location','like','%'.$search.'%')
+                ->orWhere('email','like','%'.$search.'%')
+                ->orWhere('website','like','%'.$search.'%');
+            });
+            //attention here | 'tag' named 'tags' in db        
+            }    
     }
 }
