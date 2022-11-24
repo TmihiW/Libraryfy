@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class ListingController extends Controller
 {
     //Show all listings
-    public function index(Request $request){
-        dd($request);
+    public function index(){
+        dd(request());
         return view('listings.index',[
             'listingsValues'=> Listing::all() 
         ]);
