@@ -84,7 +84,14 @@ Route::get('/search', function (Request $request) {
 //update - Update listing
 //destroy - Delete listing
 
+
 Route::get('/', [UsersController::class, 'index']);
 
-Route::get('/listings/{id}', [ListingController::class, 'show']);
+//$user_id changed in $id in database table but not in route
+//and different from UserController.php that is $u_id
+Route::get('/listings/{user_id}', [UsersController::class, 'show']);
+
+//Route::get('/', [ListingController::class, 'index']);
+
+//Route::get('/listings/{id}', [ListingController::class, 'show']);
 

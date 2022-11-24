@@ -9,16 +9,17 @@ class UsersController extends Controller
 {
     //Show all listings
     public function index(){
-        return view('listings.index',[
+        return view('listings.user-index',[
             'listingsValues'=> Users::all() 
         ]);
     }
     //Show a single listing
-    public function show($id){
-            $listing = Users::find($id);
+    //$u_id changed in $id in database table but not in route
+    public function show($u_id){
+            $listing = Users::find($u_id);
         if ($listing){
-            return view('listings.show',[
-                'listingValue'=> Users::find($id)
+            return view('listings.user-show',[
+                'listingValue'=> Users::find($u_id)
             ]);
         }
         else{
