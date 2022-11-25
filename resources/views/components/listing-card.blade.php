@@ -4,10 +4,15 @@
     <div class="flex">
         <img
             class="hidden w-48 mr-6 md:block"
-            src="{{asset('images/no-image.png')}}"
+            src="
+            @unless(($listing->logoPath))
+            {{asset('images/no-image.png')}}
+            @else{{asset('storage/'.$listing->logoPath)}}
+            @endunless"
             alt=""
         />
         <div>
+            <?php //dd($listing);?>
             <h3 class="text-2xl">
                 <a href="/listings/{{$listing->id}}">{{$listing->title}}</a>
             </h3>
