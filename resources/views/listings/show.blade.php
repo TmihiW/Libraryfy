@@ -12,7 +12,11 @@
         >
             <img
                 class="w-48 mr-6 mb-6"
-                src="{{asset('images/no-image.png')}}"
+                src="
+                @unless(($listingValue->logoPath))
+                {{asset('images/no-image.png')}}
+                @else{{asset('storage/'.$listingValue->logoPath)}}
+                @endunless"
                 alt=""
             />
 
