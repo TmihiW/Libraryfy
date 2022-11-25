@@ -34,7 +34,7 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
-    //Save new listing traversymedia@gmail.com https://www.traversymedia.com/
+    //Save new listing to database
     public function saveRequest(Request $request){
         //dd($request->file('logo'));
         //dd($request->file('logo')->store('logos','public'));
@@ -55,6 +55,36 @@ class ListingController extends Controller
         Listing::create($formFields);                
         //Session::flash('message','Listing created successfully');
         return redirect('/')->with('success','Listing created successfully');
+    }
+    //Show form to edit listing
+    public function editView(Listing $listing){ 
+        //dd($listing);       
+        if ($listing){
+            return view('listings.edit',[
+                'listingGonaEdited'=> $listing
+            ]);
+        }
+        else{
+            abort('404');
+        }
+    }
+    public function updateRequest(Request $request, Listing $listing){
+        
+        $formFields=$request->validate([
+            'title'=>'required',
+            'company'=>['required'],
+            'location'=>'required',
+            'website'=>'required',
+            'email'=>['required','email'],
+            'tags'=>'required',
+            'description'=>'required'
+        ]);
+        if($request->hasFile('logo')){
+            $formFields['logoPath']=$request->file('logo')->store('logos','public');
+        }
+        $listing->update($formFields);                
+        //Session::flash('message','Listing created successfully');
+        return redirect('/listings/'.$listing->id)->with('success','Listing updated successfully');
     }
     
 }

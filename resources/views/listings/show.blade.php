@@ -57,6 +57,14 @@
             </div>
         </div>
     </x-card>
+    <x-card class="mt-4 p-2 flex space-x-6">
+        <a 
+            href="/listings/{{$listingValue->id}}/edit" 
+            class="text-black"
+            ><i class="fa-solid fa-edit"></i
+            >Edit</a
+        >
+    </x-card>
 </div>
 @else
 <p>No listing found</p>
