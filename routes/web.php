@@ -89,13 +89,14 @@ Route::get('/search', function (Request $request) {
 *          Users Routes
 *
 */
-Route::get('/', [UsersController::class, 'index']);
+//Route::get('/', [UsersController::class, 'index']);
 
 ////$user_id changed in $id in database table but not in route
 ////and different from UserController.php that is $u_id
-Route::get('/listings/{user_id}', [UsersController::class, 'show']);
+//Route::get('/listings/{user_id}', [UsersController::class, 'show']);
 
-//Route::get('/', [ListingController::class, 'index']);
+Route::get('/', [ListingController::class, 'index']);
 
-//Route::get('/listings/{id}', [ListingController::class, 'show']);
-
+Route::get('/listings/create', [ListingController::class, 'create']);
+//Must to be before /listings/{listing} route to prevent conflict
+Route::get('/listings/{id}', [ListingController::class, 'show']);
