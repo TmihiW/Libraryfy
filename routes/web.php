@@ -98,5 +98,8 @@ Route::get('/search', function (Request $request) {
 Route::get('/', [ListingController::class, 'index']);
 
 Route::get('/listings/create', [ListingController::class, 'create']);
-//Must to be before /listings/{listing} route to prevent conflict
+
+Route::post('/listings', [ListingController::class, 'store']);
+//Must to be before /listings/{id} route to prevent conflict
 Route::get('/listings/{id}', [ListingController::class, 'show']);
+
