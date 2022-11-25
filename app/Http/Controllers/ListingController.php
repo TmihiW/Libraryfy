@@ -61,7 +61,7 @@ class ListingController extends Controller
         //dd($listing);       
         if ($listing){
             return view('listings.edit',[
-                'listingGonaEditedValue'=> $listing
+                'listingGonaEdited'=> $listing
             ]);
         }
         else{
