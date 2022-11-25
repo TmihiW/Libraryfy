@@ -86,5 +86,9 @@ class ListingController extends Controller
         //Session::flash('message','Listing created successfully');
         return redirect('/listings/'.$listing->id)->with('success','Listing updated successfully');
     }
+    public function deleteRequest(Listing $listing){
+        $listing->delete();
+        return redirect('/')->with('success','Listing deleted successfully');
+    }
     
 }

@@ -111,6 +111,9 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'editView']);
 //Update listing
 Route::put('/listings/{listing}', [ListingController::class, 'updateRequest']);
 
+//Delete listing
+Route::delete('/listings/{listing}', [ListingController::class, 'deleteRequest']);
+
 //Must to be before /listings/{id} route to prevent conflict
 //Single Listing
 Route::get('/listings/{id}', [ListingController::class, 'showView']);
