@@ -64,6 +64,14 @@
             ><i class="fa-solid fa-edit"></i
             >Edit</a
         >
+        <form method="POST" action="/listings/{{$listingValue->id}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-red-500">
+                <i class="fa-solid fa-trash"></i
+                >Delete</button
+            >
+        </form>
     </x-card>
 </div>
 @else
