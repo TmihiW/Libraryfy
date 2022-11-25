@@ -9,7 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
     use HasFactory;
+
+    //specify the table name
+    protected $table = 'listings';
+    //composer dump-autoload -o  //to update the autoloader
+
+    // maybe use this for fields 
+    //protected $quarded=[]; //all fields are fillable
     
+
     protected $fillable = [
         'title',
         'company',
