@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //another model but be careful with the name of the table
         //Model::unguard();
+        //Paginator::useBootstrapFive();
     }
 }
