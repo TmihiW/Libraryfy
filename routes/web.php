@@ -95,11 +95,23 @@ Route::get('/search', function (Request $request) {
 ////and different from UserController.php that is $u_id
 //Route::get('/listings/{user_id}', [UsersController::class, 'show']);
 
+//All listings
 Route::get('/', [ListingController::class, 'indexView']);
 
+//Show Create Form
 Route::get('/listings/create', [ListingController::class, 'createView']);
 
+//Store new listing
 Route::post('/listings', [ListingController::class, 'saveRequest']);
+
+//Show Edit Form
+Route::get('/listings/{listing}/edit', [ListingController::class, 'editView']);
+
+//in order to submit the form we need to use PUT method
+//Update listing
+Route::put('/listings/{listing}', [ListingController::class, 'updateRequest']);
+
 //Must to be before /listings/{id} route to prevent conflict
+//Single Listing
 Route::get('/listings/{id}', [ListingController::class, 'showView']);
 
