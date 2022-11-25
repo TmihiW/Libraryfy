@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     use HasFactory;
+    
     public function scopeFilter($query,array $filters){        
         if($filters['search'] ?? false){
             $query->when($filters['search'],function($query,$search){

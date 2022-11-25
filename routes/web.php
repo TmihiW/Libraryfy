@@ -95,11 +95,11 @@ Route::get('/search', function (Request $request) {
 ////and different from UserController.php that is $u_id
 //Route::get('/listings/{user_id}', [UsersController::class, 'show']);
 
-Route::get('/', [ListingController::class, 'index']);
+Route::get('/', [ListingController::class, 'indexView']);
 
-Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/create', [ListingController::class, 'createView']);
 
-Route::post('/listings', [ListingController::class, 'store']);
+Route::post('/listings', [ListingController::class, 'saveRequest']);
 //Must to be before /listings/{id} route to prevent conflict
-Route::get('/listings/{id}', [ListingController::class, 'show']);
+Route::get('/listings/{id}', [ListingController::class, 'showView']);
 

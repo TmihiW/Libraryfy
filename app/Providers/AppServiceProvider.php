@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //another model but be careful with the name of the table
-        //Model::unguard();
+        Model::unguard();
         //Paginator::useBootstrapFive();
     }
 }

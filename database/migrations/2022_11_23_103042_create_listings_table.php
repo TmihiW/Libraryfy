@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('logoPath')->nullable();
+            //path to logo
+            //php artisan migrate:refresh --seed
             $table->string('tags');
             $table->string('company');
             $table->string('location');
