@@ -41,10 +41,10 @@ class ListingController extends Controller
         // or 
         //dd($request->file('logo')->store('public'));
         $formFields=$request->validate([
-            'title'=>'required',
+            'title'=>['required','string','max:255'],
             'company'=>['required',Rule::unique('listings','company')],
             'location'=>'required',
-            'website'=>'required',
+            'website'=>['required','url','string','max:255'],
             'email'=>['required','email',Rule::unique('listings','email')],
             'tags'=>'required',
             'description'=>'required'
@@ -61,7 +61,7 @@ class ListingController extends Controller
         //dd($listing);       
         if ($listing){
             return view('listings.edit',[
-                'listingGonaEdited'=> $listing
+                'listingGonaEditedValue'=> $listing
             ]);
         }
         else{
