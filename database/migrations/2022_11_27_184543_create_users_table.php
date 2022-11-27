@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /** php artisan make:migration create_users_table
      * Run the migrations.
      *
      * @return void
@@ -14,21 +14,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('u_id');
+            $table->id('id');
             $table->string('name_');
             $table->string('surname_');
             $table->string('name_surname_');
             $table->string('username_');
             $table->string('password');            
-            $table->string('age');
-            $table->text('adress');
+            $table->string('age')->nullable();
+            $table->text('adress')->nullable();
             $table->string('role_id');            
-            $table->string('times_rented');
+            $table->string('times_rented')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
+        //php artisan migrate:refresh --seed
     }
 
     /**

@@ -7,7 +7,7 @@
             <p class="mb-4">Post a gig to find a developer</p>
         </header>
 
-        <form method="POST" action="/listings" enctype="multipart/form-data">
+        <form method="POST" action="/laragigs/listings" enctype="multipart/form-data">
             @csrf {{--Cross-Site Request Forgery => prevents scripting attacks--}}
             <div class="mb-6">
                 <label
@@ -154,7 +154,7 @@
                     >Create Gig</button
                 >
                 <a 
-                    href="/" 
+                    href="/laragigs/" 
                     class="text-black ml-4"
                     > Back </a
                 >

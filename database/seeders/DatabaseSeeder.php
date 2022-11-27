@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Database\Seeder;
@@ -51,6 +52,11 @@ class DatabaseSeeder extends Seeder
         //php artisan db:seed
         Listing::factory(6)->create();
 
+        //Class "Database\Seeders\Users" not found
+        User::factory(5)->create();
+        //Change factory name to UserFactory->UsersFactory that works
+        //Users::factory(5)->create();
+        
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
