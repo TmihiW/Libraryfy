@@ -46,4 +46,9 @@ class Listing extends Model
             //attention here | 'tag' named 'tags' in db        
             }    
     }
+
+    //Relationship To User
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

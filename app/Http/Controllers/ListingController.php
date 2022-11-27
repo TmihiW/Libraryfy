@@ -52,6 +52,7 @@ class ListingController extends Controller
         if($request->hasFile('logo')){
             $formFields['logoPath']=$request->file('logo')->store('logos','public');
         }
+        $formFields['user_id']=auth()->user()->id;
         Listing::create($formFields);                
         //Session::flash('message','Listing created successfully');
         return redirect('/laragigs/')->with('success','Listing created successfully');

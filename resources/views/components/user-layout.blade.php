@@ -88,9 +88,9 @@
             {{-- if  role_id = 1 then show admin panel--}}
             @if(auth()->user()->role_id == 1)
                 <a 
-                    href="create.html" 
+                    href="/laragigs/listings/create" 
                     class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
-                    >Post Job</a
+                    >Post</a
                 >
             @endif
             @endauth
