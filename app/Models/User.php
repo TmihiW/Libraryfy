@@ -42,4 +42,27 @@ class User extends Authenticatable
             });       
         }    
     }
+
+    //Relationship With Listing
+    public function listings(){
+        return $this->hasMany(Listing::class,'user_id');
+    }
+
+
+    //   php artisan tinker
+    //   \App\Models\User::first()
+    //   \App\Models\Listing::first()
+    //   \App\Models\Listing::find(7)
+    //   \App\Models\Listing::find(7)->user
+    //   \App\Models\Listing::find(7)->user->name_
+    //   \App\Models\Listing::find(7)->user->listings
+    //   \App\Models\Listing::find(7)->user->listings->first()
+
+    
+    //   php artisan tinker
+    //   $user = App\Models\User::find(6);
+    //   $user->listings;
+    //   $user->listings->first();
+
+    //   exit
 }
