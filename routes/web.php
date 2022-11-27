@@ -110,7 +110,10 @@ Route::put('/laragigs/listings/{listing}', [ListingController::class, 'updateReq
 //Delete listing
 Route::delete('/laragigs/listings/{listing}', [ListingController::class, 'deleteRequest'])->middleware('auth');
 
-//Must to be before /listings/{id} route to prevent conflict
+//Manage Listings
+Route::get('/laragigs/listings/manage', [ListingController::class, 'manageView'])->middleware('auth');
+
+//Must to be before /laragigs/listings/{id} route to prevent conflict
 //Single Listing
 Route::get('/laragigs/listings/{id}', [ListingController::class, 'showView'])->middleware('auth');
 
@@ -153,6 +156,8 @@ Route::get('/login', [UserController::class, 'loginView'])->name('login')->middl
 
 //Log user in
 Route::post('/users/authenticate', [UserController::class, 'authenticateRequest']);
+
+
 
 
 //run 

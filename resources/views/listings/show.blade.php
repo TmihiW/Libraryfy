@@ -57,10 +57,11 @@
             </div>
         </div>
     </x-card>
+    {{-- gona be auth --}}
     <x-card class="mt-4 p-2 flex space-x-6">
         <a 
             href="/laragigs/listings/{{$listingValue->id}}/edit" 
-            class="text-black"
+            class="text-blue-400"
             ><i class="fa-solid fa-edit"></i
             >Edit</a
         >

@@ -46,12 +46,16 @@
                     <span class="font-bold uppercase">
                     {{auth()->user()->username_}}</span></li
                 >
-                <li>
-                    <a href="/listings/manage" class="hover:text-laravel"
-                        ><i class="fa-solid fa-gear"
-                        ></i>Manage Posts</a
-                    ></li
-                >
+                
+                @if(auth()->user()->role_id == 1)
+                    <li>
+                        <a href="/laragigs/listings/manage" class="hover:text-laravel"
+                            ><i class="fa-solid fa-gear"
+                            ></i>Manage Posts</a
+                        ></li
+                    >
+                @endif
+                
                 <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
