@@ -71,6 +71,12 @@ class ListingController extends Controller
     }
     public function updateRequest(Request $request, Listing $listing){
         
+        //Make sure that the user is the owner of the listing
+        if( auth()->user()->role_id!=1){ //except admin
+            if($listing->user_id != auth()->user()->id){
+                return redirect('/laragigs/')->with('success','Unauthorized Page');
+            }
+        }
         $formFields=$request->validate([
             'title'=>'required',
             'company'=>['required'],
@@ -88,8 +94,21 @@ class ListingController extends Controller
         return redirect('/laragigs/listings/'.$listing->id)->with('success','Listing updated successfully');
     }
     public function deleteRequest(Listing $listing){
+        //Make sure that the user is the owner of the listing
+        if( auth()->user()->role_id!=1){ //except admin
+            if($listing->user_id != auth()->user()->id){
+                return redirect('/laragigs/')->with('success','Unauthorized Page');
+            }
+        }
         $listing->delete();
         return redirect('/laragigs/')->with('success','Listing deleted successfully');
+    }
+
+    //manage  Listings
+    public function manageView(){
+        return view('listings.manage',[
+            'listingsGonaManaged'=> auth()->user()->listings()->get()
+        ]);
     }
     
 }
