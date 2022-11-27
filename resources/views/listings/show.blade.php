@@ -2,7 +2,7 @@
 @include('partials._search')
 
 @unless(!($listingValue))
-<a href="/" class="inline-block text-black ml-4 mb-4"
+<a href="/laragigs/" class="inline-block text-black ml-4 mb-4"
 ><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div class="mx-4">
@@ -59,12 +59,12 @@
     </x-card>
     <x-card class="mt-4 p-2 flex space-x-6">
         <a 
-            href="/listings/{{$listingValue->id}}/edit" 
+            href="/laragigs/listings/{{$listingValue->id}}/edit" 
             class="text-black"
             ><i class="fa-solid fa-edit"></i
             >Edit</a
         >
-        <form method="POST" action="/listings/{{$listingValue->id}}">
+        <form method="POST" action="/laragigs/listings/{{$listingValue->id}}">
             @csrf
             @method('DELETE')
             <button type="submit" class="text-red-500">

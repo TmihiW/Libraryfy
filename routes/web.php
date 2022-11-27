@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -89,32 +89,71 @@ Route::get('/search', function (Request $request) {
 *          Users Routes
 *
 */
-//Route::get('/', [UsersController::class, 'index']);
 
-////$user_id changed in $id in database table but not in route
-////and different from UserController.php that is $u_id
-//Route::get('/listings/{user_id}', [UsersController::class, 'show']);
 
 //All listings
-Route::get('/', [ListingController::class, 'indexView']);
+Route::get('/laragigs/', [ListingController::class, 'indexView'])->middleware('auth');
 
 //Show Create Form
-Route::get('/listings/create', [ListingController::class, 'createView']);
+Route::get('/laragigs/listings/create', [ListingController::class, 'createView'])->middleware('auth');
 
 //Store new listing
-Route::post('/listings', [ListingController::class, 'saveRequest']);
+Route::post('/laragigs/listings', [ListingController::class, 'saveRequest'])->middleware('auth');
 
 //Show Edit Form
-Route::get('/listings/{listing}/edit', [ListingController::class, 'editView']);
+Route::get('/laragigs/listings/{listing}/edit', [ListingController::class, 'editView'])->middleware('auth');
 
 //in order to submit the form we need to use PUT method
 //Update listing
-Route::put('/listings/{listing}', [ListingController::class, 'updateRequest']);
+Route::put('/laragigs/listings/{listing}', [ListingController::class, 'updateRequest'])->middleware('auth');
 
 //Delete listing
-Route::delete('/listings/{listing}', [ListingController::class, 'deleteRequest']);
+Route::delete('/laragigs/listings/{listing}', [ListingController::class, 'deleteRequest'])->middleware('auth');
 
 //Must to be before /listings/{id} route to prevent conflict
 //Single Listing
-Route::get('/listings/{id}', [ListingController::class, 'showView']);
+Route::get('/laragigs/listings/{id}', [ListingController::class, 'showView'])->middleware('auth');
 
+
+/**************************************************************/
+/**************************************************************/
+/**************************************************************/
+/************  **  **      **      **    ****      ************/
+/************  **  **  ******  ******  **  **  ****************/
+/************  **  **      **      **  **  **      ************/
+/************  **  ******  **  ******    ********  ************/
+/************      **      **      **  **  **      ************/
+/**************************************************************/
+/**************************************************************/
+/**************************************************************/
+//                  squint your eyes to see
+
+
+//Show Register
+//Route::get('/laragigs/register', [UsersController::class, 'laragigsRegisterView']);
+Route::get('/register', [UserController::class, 'registerView'])->middleware('guest');
+
+//Create new user for listing
+//Route::post('/laragigs/users', [UsersController::class, 'laragigsSaveRequest']);
+//Create new user for Libraryfy
+Route::post('/users', [UserController::class, 'saveRegisterRequest'])->middleware('guest');
+
+Route::get('/', [UserController::class, 'userIndexView']);
+
+////$user_id changed in $id in database table but not in route
+////and different from UserController.php that is $u_id
+Route::get('/listings/{u_id}', [UserController::class, 'userShowView']);
+
+
+//Log user out
+Route::post('/logout', [UserController::class, 'logoutRequest'])->middleware('auth');
+
+//Show Login form
+Route::get('/login', [UserController::class, 'loginView'])->name('login')->middleware('guest');
+
+//Log user in
+Route::post('/users/authenticate', [UserController::class, 'authenticateRequest']);
+
+
+//run 
+//php artisan optimize

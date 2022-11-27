@@ -7,7 +7,7 @@
             <p class="mb-4">Edit: {{$listingGonaEdited->company}}</p>
         </header>
 
-        <form method="POST" action="/listings/{{$listingGonaEdited->id}}" enctype="multipart/form-data">
+        <form method="POST" action="/laragigs/listings/{{$listingGonaEdited->id}}" enctype="multipart/form-data">
             @csrf {{--Cross-Site Request Forgery => prevents scripting attacks--}}
             @method('PUT') {{-- send as a put request--}}
             <div class="mb-6">
@@ -164,7 +164,7 @@
                     >Update Gig</button
                 >
                 <a 
-                    href="/" 
+                    href="/laragigs/" 
                     class="text-black ml-4"
                     > Back </a
                 >

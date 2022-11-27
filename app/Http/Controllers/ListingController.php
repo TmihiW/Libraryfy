@@ -44,7 +44,7 @@ class ListingController extends Controller
             'title'=>['required','string','max:255'],
             'company'=>['required',Rule::unique('listings','company')],
             'location'=>'required',
-            'website'=>['required','url','string','max:255'],
+            'website'=>['required','string','max:255'],
             'email'=>['required','email',Rule::unique('listings','email')],
             'tags'=>'required',
             'description'=>'required'
@@ -54,7 +54,7 @@ class ListingController extends Controller
         }
         Listing::create($formFields);                
         //Session::flash('message','Listing created successfully');
-        return redirect('/')->with('success','Listing created successfully');
+        return redirect('/laragigs/')->with('success','Listing created successfully');
     }
     //Show form to edit listing
     public function editView(Listing $listing){ 
@@ -84,11 +84,11 @@ class ListingController extends Controller
         }
         $listing->update($formFields);                
         //Session::flash('message','Listing created successfully');
-        return redirect('/listings/'.$listing->id)->with('success','Listing updated successfully');
+        return redirect('/laragigs/listings/'.$listing->id)->with('success','Listing updated successfully');
     }
     public function deleteRequest(Listing $listing){
         $listing->delete();
-        return redirect('/')->with('success','Listing deleted successfully');
+        return redirect('/laragigs/')->with('success','Listing deleted successfully');
     }
     
 }
