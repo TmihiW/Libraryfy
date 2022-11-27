@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            //if user is deleted then delete all listings with onDelete('cascade')
+            $table->integer('user_id')->unsignedBigInteger()->nullable()->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('logoPath')->nullable();
             //path to logo
@@ -27,6 +29,10 @@ return new class extends Migration
             $table->longText('description');
             $table->timestamps();
         });
+        Schema::table('listings', function (Blueprint $table) {
+            //$table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->change();
+                        
+        });
     }
 
     /**
@@ -36,6 +42,11 @@ return new class extends Migration
      */
     public function down()
     {
+        // Schema::table('listings', function (Blueprint $table) {
+        //     $table->dropForeign('lists_user_id_foreign');
+        //     $table->dropIndex('lists_user_id_index');
+        //     $table->dropColumn('user_id');
+        // });
         Schema::dropIfExists('listings');
     }
 };

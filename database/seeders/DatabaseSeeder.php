@@ -54,6 +54,18 @@ class DatabaseSeeder extends Seeder
 
         //Class "Database\Seeders\Users" not found
         User::factory(5)->create();
+        $user1 = User::factory()->create([
+            'name_' => 'John',
+            'surname_' => 'Doe',
+            'name_surname_' => 'John Doe',
+            'username_' => 'johndoe',
+            'email' => 'john@gmail.com',
+            'password' => bcrypt('123456'),
+            'role_id' => 1,
+        ]);
+        Listing::factory(6)->create([
+            'user_id' => $user1->id,
+        ]);
         //Change factory name to UserFactory->UsersFactory that works
         //Users::factory(5)->create();
         
