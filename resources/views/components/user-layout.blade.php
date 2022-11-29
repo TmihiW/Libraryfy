@@ -14,6 +14,7 @@
         />
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         <script>
             tailwind.config = {
                 theme: {

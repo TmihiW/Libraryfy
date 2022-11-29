@@ -20,5 +20,8 @@
     {{-- .mt-6.p4 --}}
     <div class="mt-6 p4">
         {{$listingsValues->links()}}
+        @php
+        // dd($listingsValues);
+        @endphp
     </div>
 </x-layout>

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 // php artisan make:controller UserController
 
@@ -13,9 +14,22 @@ class UserController extends Controller
 {
     //Show all listings
     public function userIndexView(){
+        $users=User::paginate('4',['*'],'usersPage');
+        //get total page number from paginate
+        $totalPage=$users->lastPage();
+        //get current page number from paginate
+        $currentPage=$users->currentPage();
         return view('listings.user-index',[
-            'listingsValues'=> User::latest()->filter(request(['tag','search']))->get()
+            'usersValues'=> $users,
+            'totalPageNum'=> $totalPage,
+            'currentPageNum'=> $currentPage
         ]);
+        
+        //return view('listings.user-index',compact('users'));        
+
+        // return view('listings.user-index',[
+        //     'userValues'=> User::latest()->filter(request(['tag','search']))->paginate('4',['*'],'users')
+        // ]);
     }
     //Show a single listing
     //$u_id changed in $id in database table but not in route
