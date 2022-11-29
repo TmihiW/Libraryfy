@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany(Listing::class,'user_id');
     }
 
+    //Relationship With Rent
+    public function rent(){
+        return $this->hasMany(Rent::class,'id_user');
+    }
+
 
     //   php artisan tinker
     //   \App\Models\User::first()
