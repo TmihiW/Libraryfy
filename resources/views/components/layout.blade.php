@@ -29,12 +29,20 @@
     </head>
     <body class="mb-48">
         <nav class="flex justify-between items-center mb-4">
-            <a href="/"
+            <nav class ="flex justify-start items-center mb-4">
+                <a href="/"
                 ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"/></a
-            >
-            <a href="/laragigs/"
-                ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"/></a
-            >
+                >
+                @auth
+                    @if(auth()->user()->role_id == 1)
+                    <a href="/laragigs/"
+                        class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400"
+                        >Admin Panel</a
+                    >
+                    @endif  
+                @endauth
+            </nav>
+            
             <ul class="flex space-x-6 mr-6 text-lg">
                 @auth
                 <li>
@@ -80,11 +88,16 @@
         >
             <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p
             >
-            <a 
-                href="/laragigs/listings/create" 
-                class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
-                >Post</a
-            >
+            @auth
+            {{-- if  role_id = 1 then show admin panel--}}
+            @if(auth()->user()->role_id == 1)
+                <a 
+                    href="/laragigs/listings/create" 
+                    class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
+                    >Post</a
+                >
+            @endif
+            @endauth
         </footer>
         <x-flash-message />
     </body>
