@@ -19,8 +19,9 @@ class RentFactory extends Factory
     {
         return [
             //
-            'id_user' => User::factory(),
+            //'id_user' => User::factory(),
             //'id_book' => Book::factory(),
+            'return_time' => fake()->dateTimeBetween('now', '+1 years'),
         ];
     }
 }

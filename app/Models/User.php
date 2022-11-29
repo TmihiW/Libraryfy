@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
 
     //Relationship With Rent
-    public function rent(){
+    public function UserToRent(){
         return $this->hasMany(Rent::class,'id_user');
     }
 

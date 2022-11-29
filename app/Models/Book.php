@@ -40,7 +40,7 @@ class Book extends Model
         return $this->hasMany(BookBarcode::class,'id_book');
     }
     //Relationship with rent
-    public function rent(){
+    public function BookToRent(){
         return $this->hasMany(Rent::class,'id_book');
     }
     //Relationship with book category
@@ -49,6 +49,9 @@ class Book extends Model
     }
     //Relationship with book AuthorOwn
     public function book_author_own(){
-        return $this->hasOne(BookAuthorOwn::class,'id_book');
+        return $this->hasOne(AuthorOwn::class,'id_book');
     }
+
+    
+    
 }

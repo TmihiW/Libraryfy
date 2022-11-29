@@ -4,6 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Author;
+use App\Models\AuthorOwn;
+use App\Models\Book;
+use App\Models\BookBarcode;
+use App\Models\BookCategory;
+use App\Models\Category;
+use App\Models\Rent;
 use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Database\Seeder;
@@ -87,6 +94,95 @@ class DatabaseSeeder extends Seeder
         Listing::factory(6)->create([
             'user_id' => $user2->id,
         ]);
+        //create 5 dummy books with category,  author,barcode
+        Book::factory(5)->create()->each(function ($book) {
+            $book->book_category()->save(BookCategory::factory()->make([
+                'id_book' => $book->id,
+                'id_category' => Category::factory()->create()->c_id,
+            ]));
+            $book->book_barcode()->save(BookBarcode::factory()->make([
+                'id_book' => $book->id,
+            ]));            
+            $book->book_author_own()->save(AuthorOwn::factory()->make([
+                'id_book' => $book->id,
+                'id_author' => Author::factory()->create()->a_id,
+            ]));
+            
+        });
+        Book::factory(3)->create()->each(function ($book) {
+            $book->book_category()->save(BookCategory::factory()->make([
+                'id_book' => $book->id,
+                'id_category' => 2,
+            ]));
+            $book->book_barcode()->save(BookBarcode::factory()->make([
+                'id_book' => $book->id,
+            ]));            
+            $book->book_author_own()->save(AuthorOwn::factory()->make([
+                'id_book' => $book->id,
+                'id_author' => 1,
+            ]));
+            
+        });
+
+         BookBarcode::factory(10)->create([
+            'id_book' => 1,
+         ]);
+        
+        //create 5 dummy rents
+        // Rent::factory(5)->create([
+        //     'id_book' => 1,
+        //     'id_user' => 1,
+        // ]);
+
+        Rent::factory()->create()->each(function($rent){
+            $user3=User::factory()->create();
+            $user3_id=$user3->id;
+            $rent->user()->associate($user3_id);
+            $rent->save();
+            $book3=Book::factory(1)->create()->each(function ($book) {
+                $book->book_category()->save(BookCategory::factory()->make([
+                    'id_book' => $book->id,
+                    'id_category' => 2,
+                ]));
+                $book->book_barcode()->save(BookBarcode::factory()->make([
+                    'id_book' => $book->id,
+                ]));            
+                $book->book_author_own()->save(AuthorOwn::factory()->make([
+                    'id_book' => $book->id,
+                    'id_author' => 1,
+                ]));           
+            });
+            $book3_id=$book3->first()->b_id;
+            $rent->book()->associate($book3_id);
+            $rent->save();
+        });  
+        
+        // Rent::factory()->create()->each(function ($rent) {            
+        //     User::factory()->create()->each(function($user){
+        //         $user->rentUser()->save(Rent::factory()->make([
+        //             'id_user'=>$user->id,
+        //         ]));
+        //     });
+        //     Book::factory()->create()->each(function ($book) {
+        //         $book->book_category()->save(BookCategory::factory()->make([
+        //             'id_book' => $book->id,
+        //             'id_category' => 2,
+        //         ]));
+        //         $book->book_barcode()->save(BookBarcode::factory()->make([
+        //             'id_book' => $book->id,
+        //         ]));            
+        //         $book->book_author_own()->save(AuthorOwn::factory()->make([
+        //             'id_book' => $book->id,
+        //             'id_author' => 1,
+        //         ]));
+        //         $book->rentBook()->save(Rent::factory()->make([
+        //             'id_book'=>$book->id,
+        //         ]));   
+        //     });
+                                     
+        // });
+
+
         //Change factory name to UserFactory->UsersFactory that works
         //Users::factory(5)->create();
         

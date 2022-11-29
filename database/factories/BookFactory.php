@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -19,14 +19,14 @@ class BookFactory extends Factory
     {
         return [
             //
-            'b_name_' => fake()->bookname(),
-            //'id_barcode' => BookBarcode::factory(),
-            //random page number
-            'pages' => fake()->numberBetween(100, 1000),
-            //'page' => Str::random(3),
+            'b_name_' => fake()->name(),
+            //id_barcode from book_barcode
+            'page' => fake()->numberBetween(100, 1000),
             //double random price
+            'price' => fake()->randomFloat(2, 0, 100),
             
             
         ];
     }
+    
 }

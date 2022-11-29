@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('book_category', function (Blueprint $table) {
             $table->id('b_c_id');
-            $table->bigInteger('id_book');
-            $table->bigInteger('id_category');
+            $table->unsignedBigInteger('id_book')->nullable()->references('b_id')->on('book')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('id_category')->nullable()->references('c_id')->on('category')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

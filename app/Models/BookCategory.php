@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BookCategory extends Model
 {
     use HasFactory;
+    protected $table='book_category';
+    protected $primaryKey='b_c_id';
 
     //Relationship with Category
     public function category(){
