@@ -18,6 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             //
+            'c_name_' => fake()->name(),
         ];
     }
 }

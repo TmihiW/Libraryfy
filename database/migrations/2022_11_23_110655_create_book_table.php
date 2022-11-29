@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('book', function (Blueprint $table) {
             $table->id('b_id');
             $table->string('b_name_');
-            $table->string('barcode');
             $table->integer('page')->unsigned();
             $table->double('price');
+            $table->timestamps();
         });
     }
 

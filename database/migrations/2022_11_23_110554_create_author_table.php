@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('birth_dt');
             $table->date('death_dt');
             $table->integer('age');
+            $table->timestamps();
         });
     }
 

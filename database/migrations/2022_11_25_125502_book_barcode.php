@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('book_barcode', function (Blueprint $table) {
             $table->id('b_bar_id');
-            $table->bigInteger('id_book');
+            $table->unsignedBigInteger('id_book')->nullable()->references('b_id')->on('book')->constrained()->onDelete('cascade');
             $table->bigInteger('barcode');
             $table->boolean('isAvailable')->default(1);
+            $table->timestamps();
         });
     }
 

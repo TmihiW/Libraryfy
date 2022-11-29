@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class BookBarcode extends Model
 {
     use HasFactory;
+    protected $table='book_barcode';
+    protected $primaryKey='id';
 
+    protected $fillable = [
+        'barcode',
+    ];
 
     //Relationship with book    
     public function book(){

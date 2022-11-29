@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\BookBarcode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class BookBarcodeFactory extends Factory
     {
         return [
             //
+            'barcode' => fake()->numberBetween(10000, 50000),
         ];
     }
 }
