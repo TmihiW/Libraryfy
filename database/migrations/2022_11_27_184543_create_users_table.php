@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('name_surname_');
             $table->string('username_');
             $table->string('password');            
-            $table->string('age')->nullable();
+            $table->integer('age')->nullable();
             $table->text('adress')->nullable();
             $table->string('role_id');            
-            $table->string('times_rented')->nullable();
+            $table->integer('times_rented')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken()->nullable();

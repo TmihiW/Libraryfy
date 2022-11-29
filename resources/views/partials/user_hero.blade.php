@@ -13,12 +13,27 @@
             <p class="text-2xl text-gray-200 font-bold my-4">
                 Rent Books 
             </p>
-            <div>
+            @auth  
+                <div>
+                    <a
+                        href="/register"
+                        class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                        >Rent a book</a
+                    >
+                </div>                   
+            @else
+                <div>
+                    <a
+                        href="/register"
+                        class="inline-block border-2 border-white text-white-xs py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                        >Sign Up to Rent a Book</a
+                    >
+                </div>
                 <a
-                    href="/register"
-                    class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-                    >Sign Up to Rent a Book</a
-                >
-            </div>
+                        href="/login"
+                        class="border-1 border-white text-white py-2 px-4 rounded-xl mt-2 hover:text-black hover:border-black"
+                        >Already have an account?</a
+                    >
+            @endauth
         </div>
 </section>

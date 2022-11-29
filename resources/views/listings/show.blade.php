@@ -58,22 +58,26 @@
         </div>
     </x-card>
     {{-- gona be auth --}}
-    <x-card class="mt-4 p-2 flex space-x-6">
-        <a 
-            href="/laragigs/listings/{{$listingValue->id}}/edit" 
-            class="text-blue-400"
-            ><i class="fa-solid fa-edit"></i
-            >Edit</a
-        >
-        <form method="POST" action="/laragigs/listings/{{$listingValue->id}}">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="text-red-500">
-                <i class="fa-solid fa-trash"></i
-                >Delete</button
-            >
-        </form>
-    </x-card>
+    @auth
+        @if(auth()->user()->role_id == 1)
+            <x-card class="mt-4 p-2 flex space-x-6">
+                <a 
+                    href="/laragigs/listings/{{$listingValue->id}}/edit" 
+                    class="text-blue-400"
+                    ><i class="fa-solid fa-edit"></i
+                    >Edit</a
+                >
+                <form method="POST" action="/laragigs/listings/{{$listingValue->id}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500">
+                        <i class="fa-solid fa-trash"></i
+                        >Delete</button
+                    >
+                </form>
+            </x-card>
+        @endif
+    @endauth
 </div>
 @else
 <p>No listing found</p>

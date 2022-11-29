@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             //if user is deleted then delete all listings with onDelete('cascade')
-            $table->integer('user_id')->unsignedBigInteger()->nullable()->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable()->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('logoPath')->nullable();
             //path to logo
@@ -29,10 +29,12 @@ return new class extends Migration
             $table->longText('description');
             $table->timestamps();
         });
-        Schema::table('listings', function (Blueprint $table) {
-            //$table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->change();
+
+        //if make relation on DB level then you can't delete user
+                // Schema::table('listings', function (Blueprint $table) {
+        //     //$table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->change();
                         
-        });
+        // });
     }
 
     /**
