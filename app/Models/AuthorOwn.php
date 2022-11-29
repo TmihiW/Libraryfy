@@ -8,8 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class AuthorOwn extends Model
 {
     use HasFactory;
+    protected $table = 'author_own';
+    protected $primaryKey = 'a_own_id';
+    
     //Relationship with author
     public function author(){
         return $this->belongsTo(Author::class,'id_author');
+    }
+    //Relationship with book
+    public function book(){
+        return $this->belongsTo(Book::class,'id_book');
     }
 }

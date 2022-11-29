@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Rent extends Model
 {
     use HasFactory;
+
     protected $table = 'rent';
+
     protected $primaryKey = 'r_id';    
+
     protected $fillable = [
-        'id_user',
-        'id_book',
         'date_rent',
         'date_return',
         'isReturn',

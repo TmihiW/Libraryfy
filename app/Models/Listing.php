@@ -14,24 +14,16 @@ class Listing extends Model
     protected $table = 'listings';
     //composer dump-autoload -o  //to update the autoloader
 
+    //specify the primary key
+    protected $primaryKey = 'id';
+
     // maybe use this for fields 
     //protected $quarded=[]; //all fields are fillable
     
     //add book category panel
 
-    // protected $table = 'books';
-	// protected $primaryKey = 'book_id';
-                // multi column tab index
-                // <div class="control-group">
-                //     <label class="control-label" for="basicinput">Category</label>
-                //     <div class="controls">
-                //         <select tabindex="1" id="category" data-form-field="category" data-placeholder="Select category.." class="span8">
-                //             @foreach($categories_list as $category)
-                //                 <option value="{{ $category->id }}">{{ $category->category }}</option>
-                //             @endforeach
-                //         </select>
-                //     </div>
-                // </div>
+    
+                
     protected $fillable = [
         'title',
         'company',
