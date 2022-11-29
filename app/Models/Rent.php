@@ -27,4 +27,14 @@ class Rent extends Model
     public function book(){
         return $this->belongsTo(Book::class,'id_book');
     }
+    public function totalRents()
+    {
+        return $this::count();
+    }
+
+    //find users total rents
+    public function totalUserRents($id)
+    {
+        return $this::where('id_user',$id)->count();
+    }
 }
