@@ -16,11 +16,11 @@ class Book extends Model
         'price',
     ];
     
-    //book_barcode id_book    
+    //Relationship with book barcode 
     public function book_barcode(){
         return $this->hasMany(BookBarcode::class,'id_book');
     }
-    // rent id_book
+    //Relationship with rent
     public function rent(){
         return $this->hasMany(Rent::class,'id_book');
     }

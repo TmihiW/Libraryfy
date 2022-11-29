@@ -18,11 +18,11 @@ class Rent extends Model
         'isReturn',
     ];
 
-    //user id_user
+    //Relationship with user
     public function user(){
         return $this->belongsTo(User::class,'id_user');
     }
-    //book id_book
+    //Relationship with book
     public function book(){
         return $this->belongsTo(Book::class,'id_book');
     }

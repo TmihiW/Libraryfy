@@ -9,9 +9,9 @@ class BookBarcode extends Model
 {
     use HasFactory;
 
-    
-    //book id_book    
+
+    //Relationship with book    
     public function book(){
-        return $this->belongsTo(User::class,'id_book');
+        return $this->belongsTo(Book::class,'id_book');
     }
 }
