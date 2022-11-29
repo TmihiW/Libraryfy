@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('id_book');
             $table->timestamp('rent_date');
             $table->time('return_time');
-            $table->integer('isReturn');
+            $table->boolean('isReturn')->default(0);
         });
     }
 

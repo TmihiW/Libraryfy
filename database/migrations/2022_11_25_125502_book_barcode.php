@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('b_bar_id');
             $table->bigInteger('id_book');
             $table->bigInteger('barcode');
+            $table->boolean('isAvailable')->default(1);
         });
     }
 

@@ -55,16 +55,37 @@ class DatabaseSeeder extends Seeder
         //Class "Database\Seeders\Users" not found
         User::factory(5)->create();
         $user1 = User::factory()->create([
-            'name_' => 'John',
-            'surname_' => 'Doe',
-            'name_surname_' => 'John Doe',
-            'username_' => 'johndoe',
-            'email' => 'john@gmail.com',
+            'name_' => 'Abdulkadir',
+            'surname_' => 'Fındık',
+            'name_surname_' => 'Abdulkadir Fındık',
+            'username_' => 'TmihiW',
+            'email' => 'kadirfindik3871@gmail.com',
             'password' => bcrypt('123456'),
             'role_id' => 1,
         ]);
-        Listing::factory(6)->create([
+        $user2 = User::factory()->create([
+            'name_' => 'Ahmet',
+            'surname_' => 'Yıldız',
+            'name_surname_' => 'Ahmet Yıldız',
+            'username_' => 'Ayyıldız',
+            'email' => 'ayyıldız@gmail.com',
+            'password' => bcrypt('123456'),
+            'role_id' => 0,
+        ]);
+
+        $listing1 = Listing::factory()->create([
             'user_id' => $user1->id,
+            'title' => 'Youtube Content Creator',
+            'tags' => 'Php, Laravel',
+            'company' => 'Traversy Media',
+            'location' => 'Remote',
+            'email' => 'traversymedia@gmail.com',
+            'website' => 'https://www.traversymedia.com',
+            'description' => 'Teach tech',
+            'logoPath'=>'logos/XZMlLpZs0tEjNz0lS3qnIOPNqyVwD4ujKygBvv7d.png'
+        ]);
+        Listing::factory(6)->create([
+            'user_id' => $user2->id,
         ]);
         //Change factory name to UserFactory->UsersFactory that works
         //Users::factory(5)->create();
