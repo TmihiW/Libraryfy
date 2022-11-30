@@ -57,6 +57,14 @@
                     ></li
                 >
                 @endif
+                @if(auth()->user()->role_id == 0)
+                        <li>
+                            <a href="/books/rent/return" class="hover:text-laravel"
+                                ><i class="fa-solid fa-gear"
+                                ></i>Rents</a
+                            ></li
+                        >
+                    @endif
                 <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
