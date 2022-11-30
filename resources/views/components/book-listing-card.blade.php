@@ -9,7 +9,7 @@
         />
         <div>
             <h3 class="text-2xl">
-                <a href="/books/listings/{{$listing->b_id}}">{{$listing->b_name_}}</a>
+                <a href="/books/{{$listing->b_id}}">{{$listing->b_name_}}</a>
             </h3>
             <br>
             <div class="text-xs font-bold mb-4">

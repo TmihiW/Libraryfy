@@ -183,8 +183,11 @@ Route::get('/books/search', [BookController::class, 'bookSearch'])->middleware('
 // //Store new books
 // Route::post('/books/listings', [BookController::class, 'saveRequest'])->middleware('auth');
 
-// //Show Edit books
-// Route::get('/books/listings/{listing}/edit', [BookController::class, 'editView'])->middleware('auth');
+// Manage Rents
+Route::get('/books/manage', [BookController::class, 'manageView'])->middleware('auth');
+
+//SRent book request
+Route::post('/books/rent/{id}', [BookController::class, 'bookRent'])->middleware('auth');
 
 
 // //Update books
@@ -193,12 +196,11 @@ Route::get('/books/search', [BookController::class, 'bookSearch'])->middleware('
 // //Delete books
 // Route::delete('/books/listings/{listing}', [BookController::class, 'deleteRequest'])->middleware('auth');
 
-// //Manage books
-// Route::get('/books/listings/manage', [BookController::class, 'manageView'])->middleware('auth');
+
 
 // //Must to be before /books/listings/{id} route to prevent conflict
 //Single books listing
-Route::get('/books/listings/{id}', [BookController::class, 'bookShowView'])->middleware('auth');
+Route::get('/books/{id}', [BookController::class, 'bookShowView'])->middleware('auth');
 
 
 //run 
