@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id('r_id');
             $table->unsignedBigInteger('id_user')->nullable()->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('id_book')->nullable()->references('b_id')->on('book')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('id_barcode')->nullable()->references('id')->on('book_barcode')->constrained()->onDelete('cascade');
             $table->timestamp('rent_date');
-            $table->time('return_time');
+            $table->dateTime('return_time');
             $table->boolean('isReturn')->default(0);
             $table->timestamps();
         });
