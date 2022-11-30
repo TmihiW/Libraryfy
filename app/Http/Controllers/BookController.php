@@ -138,7 +138,7 @@ class BookController extends Controller
             //dd($checkRents);
 
             //if user has not rent this book before
-            if($checkRents==null){
+            if($checkRents!=null){
                return redirect('/books')->with('success','You have already rented this book');
             }
             else{

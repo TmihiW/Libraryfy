@@ -36,11 +36,17 @@
                 >
                 @auth
                     @if(auth()->user()->role_id == 1)
-                    <a href="/laragigs/"
+                    <a href="/admin/"
                         class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400"
                         >Admin Panel</a
                     >
-                    @endif  
+                    @endif
+                    @if(auth()->user()->role_id == 1)
+                    <a href="/laragigs/"
+                        class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400"
+                        >Admin Posts</a
+                    >
+                    @endif 
                 @endauth
             </nav>
             <ul class="flex space-x-6 mr-6 text-lg">
