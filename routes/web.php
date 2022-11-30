@@ -198,6 +198,8 @@ Route::post('/books/rent/{id}', [BookController::class, 'bookRent'])->middleware
 // Manage Rents
 Route::get('/books/rent/return', [BookController::class, 'rentReturnView'])->middleware('auth');
 
+//Return Rents
+Route::post('/books/rent/return/{id}', [BookController::class, 'rentReturnRequest'])->middleware('auth');
 
 // //Must to be before /books/listings/{id} route to prevent conflict
 //Single books listing
