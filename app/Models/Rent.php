@@ -14,8 +14,8 @@ class Rent extends Model
     protected $primaryKey = 'r_id';    
 
     protected $fillable = [
-        'date_rent',
-        'date_return',
+        'rent_date',
+        'return_time',
         'isReturn',
     ];
 

@@ -52,7 +52,7 @@
                 
                     @if(auth()->user()->role_id == 1)
                         <li>
-                            <a href="/books/manage" class="hover:text-laravel"
+                            <a href="/laragigs/listings/manage" class="hover:text-laravel"
                                 ><i class="fa-solid fa-gear"
                                 ></i>Manage Books</a
                             ></li
@@ -61,7 +61,7 @@
                     
                     @if(auth()->user()->role_id == 0)
                         <li>
-                            <a href="/book/listings/manage" class="hover:text-laravel"
+                            <a href="/book/manage" class="hover:text-laravel"
                                 ><i class="fa-solid fa-gear"
                                 ></i>Rents</a
                             ></li
