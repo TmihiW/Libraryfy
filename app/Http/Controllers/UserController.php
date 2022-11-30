@@ -14,7 +14,10 @@ class UserController extends Controller
 {
     //Show all listings
     public function userIndexView(){
-        $users=User::latest()->filter(request(['tag','search']))->paginate('4',['*'],'usersPage');
+        //sorted users by times_rented
+        //$usersSorted = User::orderBy('times_rented', 'desc')->get();
+
+        $users=User::orderBy('times_rented', 'desc')->filter(request(['tag','search']))->paginate('4',['*'],'usersPage');
         //get total page number from paginate
         $totalPage=$users->lastPage();
         //get current page number from paginate
