@@ -173,10 +173,10 @@ Route::post('/users/authenticate', [UserController::class, 'authenticateRequest'
 //                  squint your eyes to see
 
 //All books
-Route::get('/books', [BookController::class, 'indexView'])->middleware('auth');
+Route::get('/books', [BookController::class, 'bookIndexView'])->middleware('auth');
 
 //Search Books for book_search
-Route::get('/books/search', [BookController::class, 'searchBook'])->middleware('auth');
+Route::get('/books/search', [BookController::class, 'bookSearch'])->middleware('auth');
 // //Show Create Form
 // Route::get('/books/listings/create', [BookController::class, 'createView'])->middleware('auth');
 
@@ -197,8 +197,8 @@ Route::get('/books/search', [BookController::class, 'searchBook'])->middleware('
 // Route::get('/books/listings/manage', [BookController::class, 'manageView'])->middleware('auth');
 
 // //Must to be before /books/listings/{id} route to prevent conflict
-// //Single books listing
-// Route::get('/books/listings/{id}', [BookController::class, 'showView'])->middleware('auth');
+//Single books listing
+Route::get('/books/listings/{id}', [BookController::class, 'bookShowView'])->middleware('auth');
 
 
 //run 

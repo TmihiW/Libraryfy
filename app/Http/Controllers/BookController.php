@@ -20,11 +20,11 @@ class BookController extends Controller
         return $booksBarcodeValues;
     }
     //Show all listings    
-    public function indexView(){
+    public function bookIndexView(){
         $books=Book::latest()->filter(request(['tag','search']))->paginate('4',['*'],'booksPage');
         //get book barcode
         $booksAllValues=DB::table('book')
-        ->select('b_id','b_name_','page','price','author.name_surname_')
+        ->select('b_id','b_name_','page','price','author.name_surname_','category.c_name_')
         ->join('author_own', 'author_own.id_book', '=', 'book.b_id')
         ->join('author', 'author.a_id', '=', 'author_own.id_author')
         ->join('book_category', 'book_category.id_book', '=', 'book.b_id')
@@ -49,16 +49,17 @@ class BookController extends Controller
     }
 
 
-    public function searchBook(Request $request)
+    public function bookSearch(Request $request)
 	{
         $search = $request->search;        
-		$book_search = Book::select('b_id','b_name_','page','price','author.name_surname_')
+		$book_search = Book::select('b_id','b_name_','page','price','author.name_surname_','category.c_name_')
         ->join('author_own', 'author_own.id_book', '=', 'book.b_id')
         ->join('author', 'author.a_id', '=', 'author_own.id_author')
         ->join('book_category', 'book_category.id_book', '=', 'book.b_id')
         ->join('category', 'category.c_id', '=', 'book_category.id_category') 
         ->where('b_name_', 'like', '%' . $search . '%')
         ->orWhere('author.name_surname_', 'like', '%' . $search . '%')
+        ->orWhere('category.c_name_', 'like', '%' . $search . '%')
         ->orderBy('b_id');
 		$book_search = $book_search->get();     
         //return $book_search;
@@ -71,18 +72,25 @@ class BookController extends Controller
         ]);
 	}
     
-    // //Show a single listing
-    // public function showView($id){
-    //         $listing = Book::find($id);
-    //     if ($listing){
-    //         return view('listings.show',[
-    //             'listingValue'=> Book::find($id)
-    //         ]);
-    //     }
-    //     else{
-    //         abort('404');
-    //     }
-    // }
+    //Show a single listing
+    public function bookShowView($id){
+            $bookListing = Book::select('b_id','b_name_','page','price','author.name_surname_','category.c_name_')
+            ->join('author_own', 'author_own.id_book', '=', 'book.b_id')
+            ->join('author', 'author.a_id', '=', 'author_own.id_author')
+            ->join('book_category', 'book_category.id_book', '=', 'book.b_id')
+            ->join('category', 'category.c_id', '=', 'book_category.id_category') 
+            ->where('b_id',$id )
+            ->orderBy('b_id');
+            $bookListing = $bookListing->get();
+        if ($bookListing){
+            return view('listings.book-show',[
+                'bookValue'=> $bookListing
+            ]);
+        }
+        else{
+            abort('404');
+        }
+    }
     // //Show form to create new listing
     // public function createView(){
     //     return view('listings.create');

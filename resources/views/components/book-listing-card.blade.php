@@ -9,19 +9,33 @@
         />
         <div>
             <h3 class="text-2xl">
-                <a href="/books/{{$listing->b_id}}">{{$listing->b_name_}}</a>
+                <a href="/books/listings/{{$listing->b_id}}">{{$listing->b_name_}}</a>
             </h3>
-            <div class="text-xl font-bold mb-4">by {{$listing->name_surname_}}</div>
-                {{--<x-user-listing-tags :tagsCsv="$listing->tags" />--}}
+            <br>
+            <div class="text-xs font-bold mb-4">
+                Author:
+                <a class="text-xs font-semibold mb-4"
+                    href="/books/search?search={{$listing->name_surname_}}">            
+                    {{$listing->name_surname_}}
+                   </a>
+            </div> 
+            <div class="text-xs font-bold mb-4">
+                Category:
+                <a class="text-xs font-semibold mb-4"
+                    href="/books/search?search={{$listing->c_name_}}">            
+                    {{$listing->c_name_}}
+                   </a>
+            </div>                  
+                {{--<x-book-listing-tags :tagsCsv="$listing->tags" />--}}
                 <ul class="flex">
                       
                     <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                        {{$listing->price}} Price
+                        ${{$listing->price}}
                     </li>
                     <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
                         {{$listing->page}} Page
                     </li>
                 </ul>
-        </div>
+            </div>
     </div>
 </x-book-card>    
