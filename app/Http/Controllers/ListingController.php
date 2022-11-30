@@ -55,7 +55,7 @@ class ListingController extends Controller
         $formFields['user_id']=auth()->user()->id;
         Listing::create($formFields);                
         //Session::flash('message','Listing created successfully');
-        return redirect('/laragigs/')->with('success','Listing created successfully');
+        return redirect('/laragigs')->with('success','Listing created successfully');
     }
     //Show form to edit listing
     public function editView(Listing $listing){ 
@@ -74,7 +74,7 @@ class ListingController extends Controller
         //Make sure that the user is the owner of the listing
         if( auth()->user()->role_id!=1){ //except admin
             if($listing->user_id != auth()->user()->id){
-                return redirect('/laragigs/')->with('success','Unauthorized Page');
+                return redirect('/laragigs')->with('success','Unauthorized Page');
             }
         }
         $formFields=$request->validate([
@@ -97,11 +97,11 @@ class ListingController extends Controller
         //Make sure that the user is the owner of the listing
         if( auth()->user()->role_id!=1){ //except admin
             if($listing->user_id != auth()->user()->id){
-                return redirect('/laragigs/')->with('success','Unauthorized Page');
+                return redirect('/laragigs')->with('success','Unauthorized Page');
             }
         }
         $listing->delete();
-        return redirect('/laragigs/')->with('success','Listing deleted successfully');
+        return redirect('/laragigs')->with('success','Listing deleted successfully');
     }
 
     //manage  Listings

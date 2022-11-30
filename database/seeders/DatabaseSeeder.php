@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'surname_' => 'Yıldız',
             'name_surname_' => 'Ahmet Yıldız',
             'username_' => 'Ayyıldız',
-            'email' => 'ayyıldız@gmail.com',
+            'email' => 'ayyildiz@gmail.com',
             'password' => bcrypt('123456'),
             'role_id' => 0,
         ]);

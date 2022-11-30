@@ -16,9 +16,9 @@
             @auth  
                 <div>
                     <a
-                        href="/books"
+                        href="/books/byauthor"
                         class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-                        >Rent a book</a
+                        >Rent Books By Author</a
                     >
                 </div>                   
             @else

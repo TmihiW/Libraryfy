@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ListingController;
-use App\Http\Controllers\UserController;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -158,6 +159,46 @@ Route::get('/login', [UserController::class, 'loginView'])->name('login')->middl
 Route::post('/users/authenticate', [UserController::class, 'authenticateRequest']);
 
 
+/**************************************************************/
+/**************************************************************/
+/**************************************************************/
+/************      **      **      **  **  ***      ***********/
+/************  **  **  **  **  **  **  *  ****   **************/
+/************      **  **  **  **  **    *****      ***********/
+/************  **  **  **  **  **  **  *  ********  ***********/
+/************      **      **      **  ***  **      ***********/
+/**************************************************************/
+/**************************************************************/
+/**************************************************************/
+//                  squint your eyes to see
+
+//All books
+Route::get('/books', [BookController::class, 'indexView'])->middleware('auth');
+
+//Search Books for book_search
+Route::get('/books/search', [BookController::class, 'searchBook'])->middleware('auth');
+// //Show Create Form
+// Route::get('/books/listings/create', [BookController::class, 'createView'])->middleware('auth');
+
+// //Store new books
+// Route::post('/books/listings', [BookController::class, 'saveRequest'])->middleware('auth');
+
+// //Show Edit books
+// Route::get('/books/listings/{listing}/edit', [BookController::class, 'editView'])->middleware('auth');
+
+
+// //Update books
+// Route::put('/books/listings/{listing}', [BookController::class, 'updateRequest'])->middleware('auth');
+
+// //Delete books
+// Route::delete('/books/listings/{listing}', [BookController::class, 'deleteRequest'])->middleware('auth');
+
+// //Manage books
+// Route::get('/books/listings/manage', [BookController::class, 'manageView'])->middleware('auth');
+
+// //Must to be before /books/listings/{id} route to prevent conflict
+// //Single books listing
+// Route::get('/books/listings/{id}', [BookController::class, 'showView'])->middleware('auth');
 
 
 //run 
