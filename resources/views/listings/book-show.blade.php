@@ -46,10 +46,42 @@
                 <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
                     {{$book->page}} Page
                 </li>
+                <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                    Stock {{$numberOfAvailableBooks}}
+                    @php 
+                    //dd($bookBarcodes) 
+                    @endphp
+                </li>
             </ul>
         </div>
             </div>
         </x-book-card>
+        {{-- gona be auth --}}
+    @auth
+    @if(auth()->user()->role_id == 0)
+        @if($numberOfAvailableBooks > 0)
+            <x-book-card class="mt-4 p-2 flex space-x-6">                
+                <form method="POST" action="/books/rent/{{$book->b_id}}">
+                    @csrf
+                    <button 
+                        class="text-blue-400">
+                        <i class="fa-solid fa-edit"></i
+                        >Rent</button
+                    >
+                </form>
+            </x-book-card>
+            
+        @else
+            <x-book-card class="mt-4 p-2 flex space-x-6">
+                <a                     
+                    class="text-red-500">
+                    <i class="fa-solid fa-trash"></i
+                    >No Stocks for rent</a
+                >
+            </x-book-card>
+        @endif
+    @endif
+    @endauth
     </div>
     @endforeach
     @else

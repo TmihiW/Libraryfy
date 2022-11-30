@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Rent;
+use App\Models\BookBarcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,6 +76,7 @@ class BookController extends Controller
     
     //Show a single listing
     public function bookShowView($id){
+            //values from selected book
             $bookListing = Book::select('b_id','b_name_','page','price','author.name_surname_','category.c_name_')
             ->join('author_own', 'author_own.id_book', '=', 'book.b_id')
             ->join('author', 'author.a_id', '=', 'author_own.id_author')
@@ -82,14 +85,74 @@ class BookController extends Controller
             ->where('b_id',$id )
             ->orderBy('b_id');
             $bookListing = $bookListing->get();
+            //available barcodes from selected book
+            $booksBarcodeValues=Book::select('b_id','b_name_','page','price','book_barcode.barcode','book_barcode.isAvailable')
+            ->join('book_barcode','book_barcode.id_book','=','book.b_id')
+            ->where('book_barcode.isAvailable','=',1)
+            ->where('b_id',$id)       
+            ->orderBy('b_id');
+            $booksBarcodeValues=$booksBarcodeValues->get();
+            //count of available barcodes from selected book
+            $countB=$booksBarcodeValues->count();
         if ($bookListing){
             return view('listings.book-show',[
-                'bookValue'=> $bookListing
+                'bookValue'=> $bookListing,
+                'numberOfAvailableBooks'=> $countB,
+                'bookBarcodes'=> $booksBarcodeValues
             ]);
         }
         else{
             abort('404');
         }
+    }
+    //Rent view
+    public function bookRentView($id){
+        
+    }
+    //Rent a book
+    public function bookRent($id){
+        //get barcode from request
+        //dd($id);
+        $booksBarcodeValues=Book::select('b_id','b_name_','page','price','book_barcode.b_bar_id','book_barcode.barcode','book_barcode.isAvailable')
+            ->join('book_barcode','book_barcode.id_book','=','book.b_id')
+            ->where('book_barcode.isAvailable','=',1)
+            ->where('b_id',$id)       
+            ->orderBy('b_id');
+        $booksBarcodeValues=$booksBarcodeValues->get();
+        //dd($booksBarcodeValues);
+        foreach($booksBarcodeValues as $bookBarcodeValue){
+            if($bookBarcodeValue->isAvailable==1){
+                $avilable[] = [$bookBarcodeValue->barcode,
+                              $bookBarcodeValue->b_bar_id];
+            }
+            
+            //$barcodes=$bookBarcodeValue->barcode;
+        }
+        //dd($avilable);
+        if(count($avilable)>0){
+            //dd($avilable);
+            //dd(count($avilable));
+
+            //take first available barcode
+            $barcode=$avilable[0][0];
+            $id_barcode=$avilable[0][1];
+            //dd($barcode);
+            //dd($id_barcode);     
+
+            DB::table('book_barcode') 
+            ->where('b_bar_id',$id_barcode) ->limit(1) ->update( [ 'isAvailable' => 0 ]);
+            
+            //dd($updateAvailable);
+            return redirect('/books')->with('success','Book rented successfully');
+        }
+        else{
+            return redirect('/books')->with('success','Book rented failed');;
+        }
+        $availableBarcode=$booksBarcodeValues->barcode;
+        //dd($availableBarcode);
+        //Rent::create($formFields);                
+        //Session::flash('message','Listing created successfully');
+        //return redirect('/books')->with('success','Book rented successfully');
     }
     // //Show form to create new listing
     // public function createView(){
