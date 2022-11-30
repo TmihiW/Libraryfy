@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Rent;
+use App\Models\User;
 use App\Models\BookBarcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -136,25 +137,29 @@ class BookController extends Controller
             //dd($checkRents);
 
             //if user has not rent this book before
-            if(!$checkRents){
-                //update barcode status
-                DB::table('book_barcode') 
-                ->where('b_bar_id',$id_barcode) ->limit(1) ->update( [ 'isAvailable' => 0 ]);
-                
-                //create rent table for rent book
-                $rent = new Rent;            
-                $rent->id_user = Auth::user()->id;
-                $rent->id_book = $id;
-                $rent->id_barcode = $id_barcode;
-                $rent->return_time=Carbon::now()->addDays(30);          
-                //dd($rent);
-                $rent->save();
-
-                //dd($updateAvailable);
-                return redirect('/books')->with('success','Book rented successfully');
+            if($checkRents==null){
+               return redirect('/books')->with('success','You have already rented this book');
             }
             else{
-                return redirect('/books')->with('success','You have already rented this book');
+                 //update barcode status
+                 $barc=DB::table('book_barcode') 
+                 ->where('b_bar_id',$id_barcode) ->limit(1) ->update( [ 'isAvailable' => 0 ]);
+                 //dd($barc);
+                 //create rent table for rent book
+                 $rent = new Rent;            
+                 $rent->id_user = Auth::user()->id;
+                 $rent->id_book = $id;
+                 $rent->id_barcode = $id_barcode;
+                 $rent->return_time=Carbon::now()->addDays(30);          
+                 //dd($rent);
+                 $rent->save();
+                 //increment auth timesRented
+                    $user = User::find(Auth::user()->id);
+                    $user->times_rented = $user->times_rented + 1;
+                    $user->save();
+                 //dd($updateAvailable);
+                 return redirect('/books')->with('success','Book rented successfully');
+             
             }   
             
         }
@@ -164,7 +169,28 @@ class BookController extends Controller
     }
 
     //Rent view
-    public function bookRentView($id){
+    public function rentReturnView(){
+        $u_id = Auth::user()->id;
+        //dd($u_id);
+        $Rents=Rent::select('r_id','id_user','id_book','id_barcode','return_time','isReturn','book.b_name_')
+        ->join('book','book.b_id','=','rent.id_book')
+        ->where('isReturn',0)
+        ->where('id_user',$u_id)
+        ->orderBy('r_id');
+        $Rents=$Rents->get();
+        //dd($Rents);
+        if($Rents){
+            foreach($Rents as $Rent){
+                $Rent['remainingDays']=Carbon::now()->diffInDays($Rent->return_time);
+            }            
+            //dd($Rent);
+            return view('listings.rent-manage',[
+                'rentsGonaManaged'=> $Rents
+            ]);
+        }
+        else{
+            return redirect('/books')->with('success','You have not rented any book');
+        }
         
     }
     // //Show form to create new listing

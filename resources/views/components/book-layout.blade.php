@@ -61,7 +61,7 @@
                     
                     @if(auth()->user()->role_id == 0)
                         <li>
-                            <a href="/book/manage" class="hover:text-laravel"
+                            <a href="/books/rent/return" class="hover:text-laravel"
                                 ><i class="fa-solid fa-gear"
                                 ></i>Rents</a
                             ></li
