@@ -18,6 +18,7 @@
     </div>
     <div class="mt-6 p4">        
         @php
+        //Take paginate from here
         //dd($usersValues);        
         //dd($totalPageNum);     
         //dd($currentPageNum);

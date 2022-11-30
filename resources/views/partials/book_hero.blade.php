@@ -14,13 +14,13 @@
                 Rent Books 
             </p>
             @auth  
-                <div>
-                    <a
-                        href="/books/byauthor"
-                        class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-                        >Rent Books By Author</a
-                    >
-                </div>                   
+            <div>
+                <a
+                    href="/books"
+                    class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                    >Rent a book</a
+                >
+            </div>                    
             @else
                 <div>
                     <a
