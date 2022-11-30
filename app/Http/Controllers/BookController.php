@@ -24,8 +24,9 @@ class BookController extends Controller
         ->join('author', 'author.a_id', '=', 'author_own.id_author')
         ->join('book_category', 'book_category.id_book', '=', 'book.b_id')
         ->join('category', 'category.c_id', '=', 'book_category.id_category')        
-        ->orderBy('b_id')->get();           
+        ->orderBy('b_id')->paginate('4',['*'],'booksPage');         
         //dd($books);        
+        
         //get total page number from paginate
         $booksTotalPage=$books->lastPage();        
         //get current page number from paginate
@@ -56,7 +57,7 @@ class BookController extends Controller
         ->orWhere('author.name_surname_', 'like', '%' . $search . '%')
         ->orWhere('category.c_name_', 'like', '%' . $search . '%')
         ->orderBy('b_id');
-		$book_search = $book_search->get();     
+		$book_search = $book_search->paginate('4',['*'],'booksPage');    
         //return $book_search;
         return view('listings.book-index',[
                     'booksValues'=> $book_search,
