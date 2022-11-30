@@ -181,7 +181,13 @@ class BookController extends Controller
         //dd($Rents);
         if($Rents){
             foreach($Rents as $Rent){
-                $Rent['remainingDays']=Carbon::now()->diffInDays($Rent->return_time);
+                //check if rent time is over
+                if($Rent->return_time<Carbon::now()){
+                    $Rent['remainingDays']='Overdue!';
+                }
+                else{
+                    $Rent['remainingDays']=Carbon::now()->diffInDays($Rent->return_time);
+                }
             }            
             //dd($Rent);
             return view('listings.rent-manage',[
@@ -192,6 +198,18 @@ class BookController extends Controller
             return redirect('/books')->with('success','You have not rented any book');
         }
         
+    }
+    //Return a book
+    public function rentReturnRequest($id){
+        //dd($id);
+        $rent = Rent::find($id);
+        $rent->isReturn = 1;
+        $rent->save();
+        //update barcode status
+        $barc=DB::table('book_barcode') 
+        ->where('b_bar_id',$rent->id_barcode) ->limit(1) ->update( [ 'isAvailable' => 1 ]);
+        //dd($barc);
+        return redirect('/books')->with('success','Book returned successfully');
     }
     // //Show form to create new listing
     // public function createView(){

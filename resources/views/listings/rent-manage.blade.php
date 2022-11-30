@@ -31,7 +31,7 @@
                         <td
                             class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                         >
-                            <form method="POST" action="/books/rent/{{$rent->r_id}}">
+                            <form method="POST" action="/books/rent/return/{{$rent->r_id}}">
                                 @csrf                               
                                 <button type="submit" class="text-red-500">
                                     <i class="fa-solid fa-trash"></i
