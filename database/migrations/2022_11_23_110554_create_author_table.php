@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name_');
             $table->string('surname_');
             $table->string('name_surname_');
-            $table->date('birth_dt');
-            $table->date('death_dt');
+            $table->date('birth_dt')->nullable();
+            $table->date('death_dt')->nullable();
             $table->integer('age');
             $table->timestamps();
         });

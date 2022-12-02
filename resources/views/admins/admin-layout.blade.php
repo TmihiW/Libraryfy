@@ -46,7 +46,7 @@
                         class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400"
                         >Admin Posts</a
                     >
-                    @endif 
+                    @endif  
                 @endauth
             </nav>
             <ul class="flex space-x-6 mr-6 text-lg">
@@ -99,24 +99,18 @@
             </ul>
         </nav>
         <main>
-        {{--VIEW OUTPUT--}}
-        {{$slot}}
+            
+        @include('partials.admin_hero')
+        {{--VIEW OUTPUT--}}        
+        {{-- {{$slot}} --}}
+        @yield('content')
+        
+        
         </main>
-        <footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center" 
+        <footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-10 mt-24 opacity-90 md:justify-center" 
         >
             <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p
-            >
-            @auth
-            {{-- if  role_id = 1 then show admin panel--}}
-            @if(auth()->user()->role_id == 1)
-                <a 
-                    href="/laragigs/listings/create" 
-                    class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
-                    >Post</a
-                >
-            @endif
-            @endauth
-            
+            >            
         </footer>
         <x-flash-message />
     </body>
