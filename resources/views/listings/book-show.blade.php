@@ -82,6 +82,29 @@
         @endif
     @endif
     @endauth
+    {{-- gona be auth --}}
+    @auth
+        @if(auth()->user()->role_id == 1)
+            @foreach($bookValue as $book)
+                <x-book-card class="mt-4 p-2 flex space-x-6">
+                    <a href="/books/{{$book->b_id}}/edit"
+                        class="text-blue-400">
+                        <i class="fa-solid fa-edit"></i
+                        >Edit</a
+                    >
+                    <form method="POST" action="/books/{{$book->b_id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button 
+                            class="text-red-500">
+                            <i class="fa-solid fa-trash"></i
+                            >Delete</button
+                        >
+                    </form>
+                </x-book-card>
+            @endforeach
+        @endif    
+    @endauth
     </div>
     @endforeach
     @else

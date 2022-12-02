@@ -30,23 +30,25 @@
         //dd($currentPageNum);
         $hrefCount = 0;          
         @endphp
-        @unless($currentPageNum == 1)
-        <a href="/?usersPage=1" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">First Page</a>
-        <a href="/?usersPage={{$currentPageNum-1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Previous</a>
-        @endunless
-        {{-- set max $hrefCount to 10 max --}}
+        @if($totalPageNum>1)
+            @unless($currentPageNum == 1)
+            <a href="/?usersPage=1" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">First Page</a>
+            <a href="/?usersPage={{$currentPageNum-1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Previous</a>
+            @endunless
+            {{-- set max $hrefCount to 10 max --}}
 
-        @for ($i =1; $i<=$totalPageNum; $i++)
-            <a href="/?usersPage=<?php echo($i)?>" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">
-                <?php echo($i)?>
-            </a>
-            <?php $hrefCount++; ?>    
-        @endfor
+            @for ($i =1; $i<=$totalPageNum; $i++)
+                <a href="/?usersPage=<?php echo($i)?>" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">
+                    <?php echo($i)?>
+                </a>
+                <?php $hrefCount++; ?>    
+            @endfor
 
-        @unless($currentPageNum == $totalPageNum)
-        <a href="/?usersPage={{$currentPageNum+1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Next</a>
-        <a href="/?usersPage=<?php echo($totalPageNum)?>"class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Last Page</a>
-        @endunless
+            @unless($currentPageNum == $totalPageNum)
+            <a href="/?usersPage={{$currentPageNum+1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Next</a>
+            <a href="/?usersPage=<?php echo($totalPageNum)?>"class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Last Page</a>
+            @endunless
+        @endif
         
                                 
         

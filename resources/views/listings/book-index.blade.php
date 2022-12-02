@@ -27,23 +27,25 @@
         // dd($totalBookPageNum); 
         //dd($currentBookPageNum);
         @endphp
-        @unless($currentBookPageNum == 1)
-        <a href="/books/?booksPage=1" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">First Page</a>
-        <a href="/books/?booksPage={{$currentBookPageNum-1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Previous</a>
-        @endunless
-        {{-- set max $hrefCount to 10 max --}}
+        @if($totalBookPageNum>1)
+            @unless($currentBookPageNum == 1)
+            <a href="/books/?booksPage=1" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">First Page</a>
+            <a href="/books/?booksPage={{$currentBookPageNum-1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Previous</a>
+            @endunless
+            {{-- set max $hrefCount to 10 max --}}
 
-        @for ($i =1; $i<=$totalBookPageNum; $i++)
-            <a href="/books/?booksPage=<?php echo($i)?>" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">
-                <?php echo($i)?>
-            </a>
-            <?php $hrefCount++; ?>    
-        @endfor
+            @for ($i =1; $i<=$totalBookPageNum; $i++)
+                <a href="/books/?booksPage=<?php echo($i)?>" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">
+                    <?php echo($i)?>
+                </a>
+                <?php $hrefCount++; ?>    
+            @endfor
 
-        @unless($currentBookPageNum == $totalBookPageNum)
-        <a href="/books/?booksPage={{$currentBookPageNum+1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Next</a>
-        <a href="/books/?booksPage=<?php echo($totalBookPageNum)?>"class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Last Page</a>
-        @endunless
+            @unless($currentBookPageNum == $totalBookPageNum)
+            <a href="/books/?booksPage={{$currentBookPageNum+1}}" class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Next</a>
+            <a href="/books/?booksPage=<?php echo($totalBookPageNum)?>"class="inline-block bg-red-500 text-white border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:bg-red-400">Last Page</a>
+            @endunless
+        @endif
         
         
     </div>

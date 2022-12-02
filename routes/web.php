@@ -93,7 +93,7 @@ Route::get('/search', function (Request $request) {
 
 
 //All listings
-Route::get('/laragigs/', [ListingController::class, 'indexView'])->middleware('auth');
+Route::get('/laragigs', [ListingController::class, 'indexView'])->middleware('auth');
 
 //Show Create Form
 Route::get('/laragigs/listings/create', [ListingController::class, 'createView'])->middleware('auth');
@@ -188,12 +188,14 @@ Route::get('/books/search', [BookController::class, 'bookSearch'])->middleware('
 //SRent book request
 Route::post('/books/rent/{id}', [BookController::class, 'bookRent'])->middleware('auth');
 
+//books edit view
+Route::get('/books/{book}/edit', [BookController::class, 'editBookView'])->middleware('auth');
 
-// //Update books
-// Route::put('/books/listings/{listing}', [BookController::class, 'updateRequest'])->middleware('auth');
+//Update books
+Route::put('/books/{book}', [BookController::class, 'updateBookRequest'])->middleware('auth');
 
 // //Delete books
-// Route::delete('/books/listings/{listing}', [BookController::class, 'deleteRequest'])->middleware('auth');
+Route::delete('/books/{book}', [BookController::class, 'deleteBookRequest'])->middleware('auth');
 
 // Manage Rents
 Route::get('/books/rent/return', [BookController::class, 'rentReturnView'])->middleware('auth');
@@ -221,5 +223,50 @@ Route::get('/books/{id}', [BookController::class, 'bookShowView'])->middleware('
 
 
 Route::get('/admin', [BookController::class, 'adminView'])->middleware('auth');
+
+//add category view
+Route::get('/admin/category/add', [BookController::class, 'addCategoryView'])->middleware('auth');
+
+//add category request
+Route::post('/admin/category', [BookController::class, 'addCategoryRequest'])->middleware('auth');
+
+//add author view
+Route::get('/admin/author/add', [BookController::class, 'addAuthorView'])->middleware('auth');
+
+//add author request
+Route::post('/admin/author', [BookController::class, 'addAuthorRequest'])->middleware('auth');
+
+//add book view
+Route::get('/admin/book/add', [BookController::class, 'addBookView'])->middleware('auth');
+
+//add book request
+Route::post('/admin/book', [BookController::class, 'addBookRequest'])->middleware('auth');
+
+//All authors view
+Route::get('/admin/authors/edit', [BookController::class, 'authorIndexView'])->middleware('auth');
+
+//Authors search
+Route::get('/admin/authors/edit/search', [BookController::class, 'authorSearch'])->middleware('auth');
+
+
+// Show edit author form
+Route::get('/admin/authors/{author}/edit', [BookController::class, 'editAuthorView'])->middleware('auth');
+
+//Update author request
+Route::put('/admin/authors/{author}', [BookController::class, 'updateAuthorRequest'])->middleware('auth');
+
+//Delete author request
+Route::delete('/admin/authors/{author}', [BookController::class, 'deleteAuthorRequest'])->middleware('auth');
+
+//Single author listing
+Route::get('/admin/authors/edit/{id}', [BookController::class, 'authorShowView'])->middleware('auth');
+
+//create barcodes view
+Route::get('/admin/barcodes/create', [BookController::class, 'createBarcodesView'])->middleware('auth');
+
+//create barcodes request
+Route::post('/admin/barcodes', [BookController::class, 'createBarcodesRequest'])->middleware('auth');
+
+
 //run 
 //php artisan optimize
