@@ -9,7 +9,7 @@
             <label 
                 for="category" 
                 class="inline-block text-lg mb-2"
-                >Book name</label
+                >Category name</label
             >
             <input
                 type="text"
