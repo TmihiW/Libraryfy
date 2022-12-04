@@ -138,6 +138,7 @@ class BookController extends Controller
             //dd($id_barcode);     
             $checkRents=Rent::select('r_id','id_user','id_book','id_barcode','return_time','isReturn')
             ->where('isReturn',0)
+            ->where('id_user',Auth::user()->id)
             ->where('id_book',$id)       
             ->orderBy('r_id');
             $checkRents=$checkRents->get();
